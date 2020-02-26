@@ -1,8 +1,14 @@
-# aiohttpdemo_client/main.py
-import aiohttp
+# filename: main.py, basic request handler using aiohttp
 
-async with aiohttp.ClientSession() as session:
-    async with session.get('http://httpbin.org/get') as resp:
-        print(resp.status)
-        print(await resp.text())
+from aiohttp import web                
+import json
+
+async def handle(request):           # we define handler function
+    response_obj = { 'status' : 'success' }
+    return web.Response(text=json.dumps(response_obj))
+
+app = web.Application()              # we create app object
+app.router.add_get('/', handle)
+
+web.run_app(app)
 
