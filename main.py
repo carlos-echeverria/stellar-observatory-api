@@ -9,7 +9,7 @@ async def handle(request):
     nodes = so.nodes.get_nodes_from_stellarbeat()
     nodes_by_public_key = so.nodes.get_nodes_by_public_key(nodes)
     # graph = so.nodes.get_trust_graph(nodes_by_public_key)
-    # strcc = so.scc.get_strongly_connected_components(graph)
+    # strcc = so.utils.scc.get_strongly_connected_components(graph)
     response_obj = { 'status' : 'successful', 'nodes_by_pubkey' : nodes_by_public_key }
 
     return web.Response(text=json.dumps(response_obj))
